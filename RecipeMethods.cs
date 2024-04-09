@@ -154,6 +154,10 @@ namespace ST10361554_PROG6221_POE_Part1
             }
         }
 
+        public void CloseRecipeApp() 
+        {
+            System.Environment.Exit(0);
+        }
 
     }
 }
