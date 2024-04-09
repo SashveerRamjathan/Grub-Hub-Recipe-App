@@ -16,5 +16,7 @@ namespace ST10361554_PROG6221_POE_Part1
         public List<RecipeIngredient> Ingredients = new List<RecipeIngredient>();
 
         public List<RecipeStep> Steps = new List<RecipeStep>();
+
+        public List<RecipeIngredient> scaledIngredients = new List<RecipeIngredient>();
     }
 }
