@@ -9,8 +9,7 @@ namespace ST10361554_PROG6221_POE_Part1
 {
     internal class RecipeMethods
     {
-        //Recipe recipe = new Recipe();
-
+        
          List<Recipe> recipes = new List<Recipe>();
 
         public void GetRecipeInformation()
@@ -60,15 +59,23 @@ namespace ST10361554_PROG6221_POE_Part1
 
         public Recipe SelectRecipe()
         {
-            Console.WriteLine("\nPlease enter the number of the recipe you would like to select: ");
-            int selectedRecipeNumber = Convert.ToInt32(Console.ReadLine());
+            Recipe SelectedRecipe = new Recipe();
 
-            int selectedRecipeIndex = (selectedRecipeNumber - 1);
+            if (recipes.Count > 0)
+            {
+                Console.WriteLine("\nPlease enter the number of the recipe you would like to select: ");
+                int selectedRecipeNumber = Convert.ToInt32(Console.ReadLine());
 
-            Recipe SelectedRecipe = recipes[selectedRecipeIndex];
+                int selectedRecipeIndex = (selectedRecipeNumber - 1);
+
+                SelectedRecipe = recipes[selectedRecipeIndex];
+            }
+            else
+            {
+                Console.WriteLine("\nThere are no saved recipes at the momement, \nTry adding one first");
+            }
 
             return SelectedRecipe;
-
         }
 
         public void ScaleRecipeQuantities(Recipe recipe)
@@ -79,98 +86,118 @@ namespace ST10361554_PROG6221_POE_Part1
 
             double factorToScale = 1;
 
-            Console.WriteLine("\nPlease choose a factor by which to scale the recipe quantities: "
+            if(recipes.Count > 0) 
+            {
+                Console.WriteLine("\nPlease choose a factor by which to scale the recipe quantities: "
                             + "\n1. Halve"
                             + "\n2. Double"
                             + "\n3. Triple");
 
-            int userChoice = Convert.ToInt32(Console.ReadLine());
+                int userChoice = Convert.ToInt32(Console.ReadLine());
 
-            if(userChoice == 1)
-            {
-                factorToScale = scaleHalf;
+                if (userChoice == 1)
+                {
+                    factorToScale = scaleHalf;
+                }
+                else if (userChoice == 2)
+                {
+                    factorToScale = scaleDouble;
+                }
+                else if (userChoice == 3)
+                {
+                    factorToScale = scaleTriple;
+                }
+
+                recipe.FactorToScale = factorToScale;
+
+                recipe.scaledIngredients.Clear();
+
+                for (int i = 0; i < recipe.NumberOfIngredients; i++)
+                {
+                    var ingredient = recipe.Ingredients[i];
+
+                    ingredient.IngredientQuantity *= factorToScale;
+
+                    recipe.scaledIngredients.Add(ingredient);
+                }
+
+                DisplayScaledRecipe(recipe.scaledIngredients);
             }
-            else if(userChoice == 2) 
-            {
-                factorToScale = scaleDouble;
-            }
-            else if( userChoice == 3)
-            {
-                factorToScale = scaleTriple;
-            }
-
-            recipe.FactorToScale = factorToScale;
-
-            recipe.scaledIngredients.Clear();
-
-            for (int i = 0; i < recipe.NumberOfIngredients; i++)
-            {
-                var ingredient = recipe.Ingredients[i];
-
-                ingredient.IngredientQuantity *= factorToScale;
-
-                recipe.scaledIngredients.Add(ingredient);
-            }
-
-            DisplayScaledRecipe(recipe.scaledIngredients);
 
         }
 
         public void RevertScaledQuantities(Recipe recipe)
         {
-            double scaleFactor = recipe.FactorToScale;
-
-            for (int i = 0; i < recipe.NumberOfIngredients; i++)
+            if(recipes.Count > 0) 
             {
-                var ingredient = recipe.scaledIngredients[i];
+                double scaleFactor = recipe.FactorToScale;
 
-                ingredient.IngredientQuantity /= scaleFactor;
+                for (int i = 0; i < recipe.NumberOfIngredients; i++)
+                {
+                    var ingredient = recipe.scaledIngredients[i];
 
-                recipe.scaledIngredients.Add(ingredient);
+                    ingredient.IngredientQuantity /= scaleFactor;
+
+                    recipe.scaledIngredients.Add(ingredient);
+                }
+
+                Console.WriteLine("\nQuantities Have been Reset Successfully" +
+                    "\nTo view the original values select option (4)");
             }
-
-            Console.WriteLine("\nQuantities Have been Reset Successfully" +
-                "\nTo view the original values select option (4)");
+            
         }
 
         public void ClearRecipe()
         {
-            Console.WriteLine("\nAre you sure you want to clear all recipes: "
+            if(recipes.Count > 0)
+            {
+                Console.WriteLine("\nAre you sure you want to clear all recipes: "
                 + "\n1. Yes"
                 + "\n2. No");
-            int userChoice = Convert.ToInt32(Console.ReadLine());
+                int userChoice = Convert.ToInt32(Console.ReadLine());
 
-            if(userChoice == 1) 
-            {
-                recipes.Clear();
+                if (userChoice == 1)
+                {
+                    recipes.Clear();
+                }
+
+                Console.WriteLine("\nRecipe(s) has been cleared successfuly");
             }
-
-            Console.WriteLine("\nRecipe(s) has been cleared successfuly");
-
+            else
+            {
+                Console.WriteLine("\nThere are no recipes to clear at the momement, \nTry adding one first");
+            }
         }
 
         public void DisplayRecipe()
         {
-            for (int i = 0; i < recipes.Count; i++)
+            if(recipes.Count > 0)
             {
-                Console.WriteLine("\n----------------------------------------------------------------------------");
-                Console.WriteLine("Recipe Number: " + (i+1));
-                Console.WriteLine("----------------------------------------------------------------------------");
-                Console.WriteLine("Recipe Name: " + recipes[i].RecipeName);
-                Console.WriteLine("\n\nRecipe Ingredients: " + "\n");
-
-                foreach (RecipeIngredient item in recipes[i].Ingredients)
+                for (int i = 0; i < recipes.Count; i++)
                 {
-                    Console.WriteLine("-> " + item.IngredientQuantity + " " + item.UnitOfMeasurement + " of " + item.IngredientName);
-                }
+                    Console.WriteLine("\n----------------------------------------------------------------------------");
+                    Console.WriteLine("Recipe Number: " + (i+1));
+                    Console.WriteLine("----------------------------------------------------------------------------");
+                    Console.WriteLine("Recipe Name: " + recipes[i].RecipeName);
+                    Console.WriteLine("\n\nRecipe Ingredients: " + "\n");
 
-                Console.WriteLine("\n\nRecipe Steps: " + "\n");
+                    foreach (RecipeIngredient item in recipes[i].Ingredients)
+                    {
+                        Console.WriteLine("-> " + item.IngredientQuantity + " " + item.UnitOfMeasurement + " of " + item.IngredientName);
+                    }
 
-                for (int j = 0; j < recipes[i].Steps.Count; j++)
-                {
-                    Console.WriteLine("Step Number: " + (j+1));
-                    Console.WriteLine(recipes[i].Steps[j].StepDescription + "\n");
+                    Console.WriteLine("\n\nRecipe Steps: " + "\n");
+
+                    for (int j = 0; j < recipes[i].Steps.Count; j++)
+                    {
+                        Console.WriteLine("Step Number: " + (j+1));
+                        Console.WriteLine(recipes[i].Steps[j].StepDescription + "\n");
+                    }
                 }
+            }
+            else
+            {
+                Console.WriteLine("\nThere are no recipes to display at the momement, \nTry adding one first");
             }
         }
 
