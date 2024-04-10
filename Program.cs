@@ -6,6 +6,8 @@ internal class Program
     {
         RecipeMethods methods = new RecipeMethods();
 
+        double scaleFactor;
+
         Console.WriteLine("Welcome to My Recipe App!" + "\n");
 
         while (true) 
@@ -13,35 +15,52 @@ internal class Program
             Console.WriteLine("Please enter the number of the operation you would like to perform: "
                 + "\n1. Create Recipe"
                 + "\n2. Scale Recipe Quantities"
-                + "\n3. View Original Recipe"
-                + "\n4. Clear Recipe"
-                + "\n5. Close App");
+                + "\n3. Reset Quantities"
+                + "\n4. View Recipe"
+                + "\n5. Clear Recipe"
+                + "\n6. Close App");
 
             int userChoice = Convert.ToInt32(Console.ReadLine());
 
             switch (userChoice)
             {
+                //create recipe
                 case 1:
                 {
                     methods.GetRecipeInformation();
                     break;
                 }
+
+                //Scale Recipe Quantities
                 case 2: 
                 { 
-                   methods.ScaleRecipeQuantities(); 
+                   scaleFactor = methods.ScaleRecipeQuantities(); 
                    break;
                 }
+
+                //Reset Quantities
                 case 3:
                 {
                    methods.DisplayRecipe();
                    break;
                 }
+
+                //View Recipe
                 case 4:
+                {
+                   methods.DisplayRecipe();
+                   break;
+                }
+
+                //Clear Recipe
+                case 5:
                 {
                    methods.ClearRecipe();
                    break;
                 }
-                case 5:
+
+                //Close App
+                case 6:
                 {
                     methods.CloseRecipeApp();
                     break;

@@ -54,7 +54,7 @@ namespace ST10361554_PROG6221_POE_Part1
             recipes.Add(recipe);
         }
 
-        public void ScaleRecipeQuantities()
+        public double ScaleRecipeQuantities()
         {
             const double scaleHalf = 0.5;
             const double scaleDouble = 2;
@@ -81,7 +81,8 @@ namespace ST10361554_PROG6221_POE_Part1
             {
                 factorToScale = scaleTriple;
             }
-            
+
+            recipe.scaledIngredients.Clear();
 
             for (int i = 0; i < recipe.NumberOfIngredients; i++)
             {
@@ -92,8 +93,12 @@ namespace ST10361554_PROG6221_POE_Part1
                 recipe.scaledIngredients.Add(ingredient);
             }
 
-            DisplayRecipe(recipe.scaledIngredients);
+            DisplayScaledRecipe(recipe.scaledIngredients);
+
+            return factorToScale;
         }
+
+        
 
         public void ClearRecipe()
         {
@@ -133,7 +138,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
         }
 
-        public void DisplayRecipe(List<RecipeIngredient> ingredients)
+        public void DisplayScaledRecipe(List<RecipeIngredient> ingredients)
         {
             for (int i = 0; i < recipes.Count; i++)
             {
