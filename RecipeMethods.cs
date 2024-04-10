@@ -9,8 +9,8 @@ namespace ST10361554_PROG6221_POE_Part1
 {
     internal class RecipeMethods
     {
-        
-         List<Recipe> recipes = new List<Recipe>();
+
+        public List<Recipe> recipes = new List<Recipe>();
 
         public void GetRecipeInformation()
         {
@@ -72,7 +72,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             else
             {
-                Console.WriteLine("\nThere are no saved recipes at the momement, \nTry adding one first");
+                Console.WriteLine("\nThere are no saved recipes at the moment, \nTry adding one first");
             }
 
             return SelectedRecipe;
@@ -86,7 +86,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
             double factorToScale = 1;
 
-            if(recipes.Count > 0) 
+            if (recipes.Count > 0)
             {
                 Console.WriteLine("\nPlease choose a factor by which to scale the recipe quantities: "
                             + "\n1. Halve"
@@ -121,14 +121,14 @@ namespace ST10361554_PROG6221_POE_Part1
                     recipe.scaledIngredients.Add(ingredient);
                 }
 
-                DisplayScaledRecipe(recipe.scaledIngredients);
+                DisplayRecipe(recipe.scaledIngredients);
             }
 
         }
 
         public void RevertScaledQuantities(Recipe recipe)
         {
-            if(recipes.Count > 0) 
+            if (recipes.Count > 0)
             {
                 double scaleFactor = recipe.FactorToScale;
 
@@ -144,12 +144,12 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine("\nQuantities Have been Reset Successfully" +
                     "\nTo view the original values select option (4)");
             }
-            
+
         }
 
         public void ClearRecipe()
         {
-            if(recipes.Count > 0)
+            if (recipes.Count > 0)
             {
                 Console.WriteLine("\nAre you sure you want to clear all recipes: "
                 + "\n1. Yes"
@@ -161,17 +161,17 @@ namespace ST10361554_PROG6221_POE_Part1
                     recipes.Clear();
                 }
 
-                Console.WriteLine("\nRecipe(s) has been cleared successfuly");
+                Console.WriteLine("\nRecipe(s) has been cleared successfully");
             }
             else
             {
-                Console.WriteLine("\nThere are no recipes to clear at the momement, \nTry adding one first");
+                Console.WriteLine("\nThere are no recipes to clear at the moment, \nTry adding one first");
             }
         }
 
         public void DisplayRecipe()
         {
-            if(recipes.Count > 0)
+            if (recipes.Count > 0)
             {
                 for (int i = 0; i < recipes.Count; i++)
                 {
@@ -197,11 +197,34 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             else
             {
-                Console.WriteLine("\nThere are no recipes to display at the momement, \nTry adding one first");
+                Console.WriteLine("\nThere are no recipes to display at the moment, \nTry adding one first");
             }
         }
 
-        public void DisplayScaledRecipe(List<RecipeIngredient> ingredients)
+        public void DisplayRecipe(Recipe recipe)
+        {
+            Console.WriteLine("\n----------------------------------------------------------------------------");
+            Console.WriteLine("Recipe Name: " + recipe.RecipeName);
+            Console.WriteLine("----------------------------------------------------------------------------");
+            
+            Console.WriteLine("\n\nRecipe Ingredients: " + "\n");
+
+            foreach (RecipeIngredient item in recipe.Ingredients)
+            {
+                Console.WriteLine("-> " + item.IngredientQuantity + " " + item.UnitOfMeasurement + " of " + item.IngredientName);
+            }
+
+            Console.WriteLine("\n\nRecipe Steps: " + "\n");
+
+            for (int j = 0; j < recipe.Steps.Count; j++)
+            {
+                Console.WriteLine("Step Number: " + (j+1));
+                Console.WriteLine(recipe.Steps[j].StepDescription + "\n");
+            }
+
+        }
+
+        public void DisplayRecipe(List<RecipeIngredient> ingredients)
         {
             for (int i = 0; i < recipes.Count; i++)
             {
@@ -226,7 +249,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
         }
 
-        public void CloseRecipeApp() 
+        public void CloseRecipeApp()
         {
             System.Environment.Exit(0);
         }
