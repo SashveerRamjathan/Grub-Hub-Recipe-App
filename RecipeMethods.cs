@@ -21,14 +21,14 @@ namespace ST10361554_PROG6221_POE_Part1
             Console.WriteLine("Please enter the number of ingredients required to make your recipe: ");
             recipe.NumberOfIngredients = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 1; i <= recipe.NumberOfIngredients; i++)
+            for (int i = 0; i < recipe.NumberOfIngredients; i++)
             {
                 RecipeIngredient ingredient = new RecipeIngredient();
 
-                Console.WriteLine("Please enter the name of ingredient " + i + ": ");
+                Console.WriteLine("Please enter the name of ingredient " + (i+1) + ": ");
                 ingredient.IngredientName = Console.ReadLine();
 
-                Console.WriteLine("Please enter the unit of measurement for ingredient " + i + ": ");
+                Console.WriteLine("Please enter the unit of measurement for ingredient " + (i+1) + ": ");
                 ingredient.UnitOfMeasurement = Console.ReadLine();
 
                 Console.WriteLine("Please enter the amount of " + ingredient.IngredientName + " you have to add: ");
@@ -38,11 +38,11 @@ namespace ST10361554_PROG6221_POE_Part1
 
             }
 
-            for (int i = 1; i <= recipe.NumberOfSteps; i++)
+            for (int i = 0; i < recipe.NumberOfSteps; i++)
             {
                 RecipeStep step = new RecipeStep();
 
-                Console.WriteLine("Please enter a description for step " + i + ": ");
+                Console.WriteLine("Please enter a description for step " + (i+1) + ": ");
                 step.StepDescription = Console.ReadLine();
 
                 recipe.Steps.Add(step);
@@ -80,7 +80,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             
 
-            for (int i = 1; i <= recipe.NumberOfIngredients; i++)
+            for (int i = 0; i < recipe.NumberOfIngredients; i++)
             {
                 var ingredient = recipe.Ingredients[i];
 
@@ -108,9 +108,9 @@ namespace ST10361554_PROG6221_POE_Part1
 
         public void DisplayRecipe()
         {
-            for (int i = 1; i <= recipes.Count; i++)
+            for (int i = 0; i < recipes.Count; i++)
             {
-                Console.WriteLine("Recipe Number: " + i);
+                Console.WriteLine("Recipe Number: " + (i+1));
                 Console.WriteLine("----------------------------------------------------------------------------");
                 Console.WriteLine("Recipe Name: " + recipes[i].RecipeName);
                 Console.WriteLine("\n\nRecipe Ingredients: " + "\n");
@@ -132,9 +132,9 @@ namespace ST10361554_PROG6221_POE_Part1
 
         public void DisplayRecipe(List<RecipeIngredient> ingredients)
         {
-            for (int i = 1; i <= recipes.Count; i++)
+            for (int i = 0; i < recipes.Count; i++)
             {
-                Console.WriteLine("Recipe Number: " + i);
+                Console.WriteLine("Recipe Number: " + (i+1));
                 Console.WriteLine("----------------------------------------------------------------------------");
                 Console.WriteLine("Recipe Name: " + recipes[i].RecipeName);
                 Console.WriteLine("\n\nRecipe Ingredients: " + "\n");
