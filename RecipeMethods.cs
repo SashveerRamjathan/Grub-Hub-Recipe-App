@@ -98,7 +98,19 @@ namespace ST10361554_PROG6221_POE_Part1
             return factorToScale;
         }
 
-        
+        public void RevertScaledQuantities(double scaleFactor)
+        {
+            for (int i = 0; i < recipe.NumberOfIngredients; i++)
+            {
+                var ingredient = recipe.scaledIngredients[i];
+
+                ingredient.IngredientQuantity /= scaleFactor;
+
+                recipe.scaledIngredients.Add(ingredient);
+            }
+
+            Console.WriteLine("Quantities Have been Reset");
+        }
 
         public void ClearRecipe()
         {

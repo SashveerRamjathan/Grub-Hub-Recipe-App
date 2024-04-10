@@ -6,7 +6,7 @@ internal class Program
     {
         RecipeMethods methods = new RecipeMethods();
 
-        double scaleFactor;
+        double scaleFactor = 1;
 
         Console.WriteLine("Welcome to My Recipe App!" + "\n");
 
@@ -41,7 +41,7 @@ internal class Program
                 //Reset Quantities
                 case 3:
                 {
-                   methods.DisplayRecipe();
+                   methods.RevertScaledQuantities(scaleFactor);
                    break;
                 }
 
