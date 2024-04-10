@@ -23,15 +23,17 @@ internal class Program
 
                 //Scale Recipe Quantities
                 case 2: 
-                { 
-                   methods.ScaleRecipeQuantities(); 
+                {
+                   Recipe recipeToScale = methods.SelectRecipe();
+                   methods.ScaleRecipeQuantities(recipeToScale); 
                    break;
                 }
 
                 //Reset Quantities
                 case 3:
                 {
-                   methods.RevertScaledQuantities();
+                   Recipe recipeToReset = methods.SelectRecipe();
+                   methods.RevertScaledQuantities(recipeToReset);
                    break;
                 }
 

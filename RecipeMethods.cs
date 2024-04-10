@@ -9,12 +9,14 @@ namespace ST10361554_PROG6221_POE_Part1
 {
     internal class RecipeMethods
     {
-        Recipe recipe = new Recipe();
+        //Recipe recipe = new Recipe();
 
          List<Recipe> recipes = new List<Recipe>();
 
         public void GetRecipeInformation()
         {
+            Recipe recipe = new Recipe();
+
             Console.WriteLine("\nPlease enter the name of your recipe: ");
             recipe.RecipeName = Console.ReadLine();
 
@@ -56,7 +58,20 @@ namespace ST10361554_PROG6221_POE_Part1
             Console.WriteLine("\nRecipe saved successfully");
         }
 
-        public void ScaleRecipeQuantities()
+        public Recipe SelectRecipe()
+        {
+            Console.WriteLine("\nPlease enter the number of the recipe you would like to select: ");
+            int selectedRecipeNumber = Convert.ToInt32(Console.ReadLine());
+
+            int selectedRecipeIndex = (selectedRecipeNumber - 1);
+
+            Recipe SelectedRecipe = recipes[selectedRecipeIndex];
+
+            return SelectedRecipe;
+
+        }
+
+        public void ScaleRecipeQuantities(Recipe recipe)
         {
             const double scaleHalf = 0.5;
             const double scaleDouble = 2;
@@ -101,7 +116,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
         }
 
-        public void RevertScaledQuantities()
+        public void RevertScaledQuantities(Recipe recipe)
         {
             double scaleFactor = recipe.FactorToScale;
 
@@ -130,7 +145,7 @@ namespace ST10361554_PROG6221_POE_Part1
                 recipes.Clear();
             }
 
-            Console.WriteLine("\nRecipe has been cleared successfuly");
+            Console.WriteLine("\nRecipe(s) has been cleared successfuly");
 
         }
 
