@@ -6,21 +6,11 @@ internal class Program
     {
         RecipeMethods methods = new RecipeMethods();
 
-        double scaleFactor = 1;
-
         Console.WriteLine("Welcome to My Recipe App!" + "\n");
 
         while (true) 
         {
-            Console.WriteLine("Please enter the number of the operation you would like to perform: "
-                + "\n1. Create Recipe"
-                + "\n2. Scale Recipe Quantities"
-                + "\n3. Reset Quantities"
-                + "\n4. View Recipe"
-                + "\n5. Clear Recipe"
-                + "\n6. Close App");
-
-            int userChoice = Convert.ToInt32(Console.ReadLine());
+            int userChoice = MenuPrompt();
 
             switch (userChoice)
             {
@@ -34,14 +24,14 @@ internal class Program
                 //Scale Recipe Quantities
                 case 2: 
                 { 
-                   scaleFactor = methods.ScaleRecipeQuantities(); 
+                   methods.ScaleRecipeQuantities(); 
                    break;
                 }
 
                 //Reset Quantities
                 case 3:
                 {
-                   methods.RevertScaledQuantities(scaleFactor);
+                   methods.RevertScaledQuantities();
                    break;
                 }
 
@@ -71,10 +61,22 @@ internal class Program
                     break;
                 }
             }
-
-            continue;
         }
     }
 
+    public static int MenuPrompt()
+    {
+        Console.WriteLine("\nPlease enter the number of the operation you would like to perform: "
+                + "\n1. Create Recipe"
+                + "\n2. Scale Recipe Quantities"
+                + "\n3. Reset Quantities"
+                + "\n4. View Recipe"
+                + "\n5. Clear Recipe"
+                + "\n6. Close App");
+
+        int userChoice = Convert.ToInt32(Console.ReadLine());
+
+        return userChoice;
+    }
    
 }

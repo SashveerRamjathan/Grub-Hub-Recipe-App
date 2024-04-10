@@ -12,6 +12,7 @@ namespace ST10361554_PROG6221_POE_Part1
         public string? RecipeName { get; set; }
         public int NumberOfIngredients { get; set; }
         public int NumberOfSteps { get; set; }
+        public double FactorToScale { get; set; }
 
         public List<RecipeIngredient> Ingredients = new List<RecipeIngredient>();
 

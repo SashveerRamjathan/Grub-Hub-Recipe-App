@@ -15,7 +15,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
         public void GetRecipeInformation()
         {
-            Console.WriteLine("Please enter the name of your recipe: ");
+            Console.WriteLine("\nPlease enter the name of your recipe: ");
             recipe.RecipeName = Console.ReadLine();
 
             Console.WriteLine("\nPlease enter the number of ingredients required to make your recipe: ");
@@ -52,9 +52,11 @@ namespace ST10361554_PROG6221_POE_Part1
             }
 
             recipes.Add(recipe);
+
+            Console.WriteLine("\nRecipe saved successfully");
         }
 
-        public double ScaleRecipeQuantities()
+        public void ScaleRecipeQuantities()
         {
             const double scaleHalf = 0.5;
             const double scaleDouble = 2;
@@ -82,6 +84,8 @@ namespace ST10361554_PROG6221_POE_Part1
                 factorToScale = scaleTriple;
             }
 
+            recipe.FactorToScale = factorToScale;
+
             recipe.scaledIngredients.Clear();
 
             for (int i = 0; i < recipe.NumberOfIngredients; i++)
@@ -95,11 +99,12 @@ namespace ST10361554_PROG6221_POE_Part1
 
             DisplayScaledRecipe(recipe.scaledIngredients);
 
-            return factorToScale;
         }
 
-        public void RevertScaledQuantities(double scaleFactor)
+        public void RevertScaledQuantities()
         {
+            double scaleFactor = recipe.FactorToScale;
+
             for (int i = 0; i < recipe.NumberOfIngredients; i++)
             {
                 var ingredient = recipe.scaledIngredients[i];
