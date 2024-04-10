@@ -125,9 +125,9 @@ namespace ST10361554_PROG6221_POE_Part1
 
                 Console.WriteLine("\n\nRecipe Steps: " + "\n");
 
-                for (int j = 1; j <= recipes[i].Steps.Count; j++)
+                for (int j = 0; j < recipes[i].Steps.Count; j++)
                 {
-                    Console.WriteLine("Step Number: " + j);
+                    Console.WriteLine("Step Number: " + (j+1));
                     Console.WriteLine(recipes[i].Steps[j].StepDescription + "\n");
                 }
             }
