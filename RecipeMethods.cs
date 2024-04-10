@@ -38,6 +38,9 @@ namespace ST10361554_PROG6221_POE_Part1
 
             }
 
+            Console.WriteLine("Please enter the number of steps required to make your recipe: ");
+            recipe.NumberOfSteps = Convert.ToInt32(Console.ReadLine());
+
             for (int i = 0; i < recipe.NumberOfSteps; i++)
             {
                 RecipeStep step = new RecipeStep();
