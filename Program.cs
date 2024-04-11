@@ -18,7 +18,7 @@ internal class Program
             }
             catch (Exception e)
             {
-                Console.WriteLine("Oops, an error occurred: " + e.Message);
+                Console.WriteLine("\nOops, an error occurred: " + e.Message);
             }
 
             switch (userChoice)
@@ -32,7 +32,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -48,7 +48,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -64,7 +64,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -96,7 +96,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -111,7 +111,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -151,18 +151,11 @@ internal class Program
     {
         int userChoice = -1;
 
-        try
-        {
-            Console.WriteLine("\nPlease choose one of the options below, \nEnter the number of the operation you would like to perform: " +
-            "\n1. Display specific recipe" +
-            "\n2. Display all stored recipes");
+        Console.WriteLine("\nPlease choose one of the options below, \nEnter the number of the operation you would like to perform: " +
+        "\n1. Display specific recipe" +
+        "\n2. Display all stored recipes");
 
-            userChoice = Convert.ToInt32(Console.ReadLine());
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Oops, an error occurred: " + e.Message);
-        }
+        userChoice = Convert.ToInt32(Console.ReadLine());
 
         return userChoice;
     }
