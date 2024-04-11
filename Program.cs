@@ -9,9 +9,7 @@ internal class Program
 
         int userChoice = -1;
 
-        Console.WriteLine("----------------------------------------------------------------------------");
-        Console.WriteLine("Welcome to My Recipe App!");
-        Console.WriteLine("----------------------------------------------------------------------------\n");
+        DisplaySystemMessage("Welcome to My Recipe App!");
 
         while (true)
         {
@@ -21,7 +19,7 @@ internal class Program
             }
             catch (Exception e)
             {
-                Console.WriteLine("\nOops, an error occurred: " + e.Message);
+                DisplaySystemMessage("Oops, an error occurred: " + e.Message);
             }
 
             switch (userChoice)
@@ -35,7 +33,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
+                            DisplaySystemMessage("Oops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -51,7 +49,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
+                            DisplaySystemMessage("Oops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -67,7 +65,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
+                            DisplaySystemMessage("Oops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -93,17 +91,17 @@ internal class Program
                                 }
                                 else
                                 {
-                                    Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
+                                    DisplaySystemMessage("You have chosen an option that doesn't exist, please try again");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("\nThere are no saved recipes at the moment, \nTry adding one first");
+                                DisplaySystemMessage("There are no saved recipes at the moment, \nTry adding one first");
                             }
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
+                            DisplaySystemMessage("Oops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -118,7 +116,7 @@ internal class Program
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("\nOops, an error occurred: " + e.Message);
+                            DisplaySystemMessage("Oops, an error occurred: " + e.Message);
                         }
 
                         break;
@@ -132,7 +130,7 @@ internal class Program
                     }
                 default:
                     {
-                        Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
+                        DisplaySystemMessage("You have chosen an option that doesn't exist, please try again");
                         break;
                     }
             }
@@ -167,4 +165,13 @@ internal class Program
         return userChoice;
     }
 
+    public static void DisplaySystemMessage(string message)
+    {
+        int messageLength = message.Length ;
+        string displayLine = new string('-', (messageLength + 2));
+
+        Console.WriteLine("\n" + displayLine);
+        Console.WriteLine(message);
+        Console.WriteLine(displayLine + "\n");
+    }
 }

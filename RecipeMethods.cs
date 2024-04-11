@@ -53,7 +53,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
             recipes.Add(recipe);
 
-            Console.WriteLine("\nRecipe saved successfully");
+            DisplayRecipeMessage("Recipe saved successfully");
         }
 
         public Recipe SelectRecipe()
@@ -71,7 +71,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             else
             {
-                Console.WriteLine("\nThere are no saved recipes at the moment, \nTry adding one first");
+                DisplayRecipeMessage("There are no saved recipes at the moment, \nTry adding one first");
             }
 
             return SelectedRecipe;
@@ -126,7 +126,7 @@ namespace ST10361554_PROG6221_POE_Part1
                 }
                 else
                 {
-                    Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
+                    DisplayRecipeMessage("You have chosen an option that doesn't exist, please try again");
                 }
             }
 
@@ -147,8 +147,7 @@ namespace ST10361554_PROG6221_POE_Part1
                     recipe.scaledIngredients.Add(ingredient);
                 }
 
-                Console.WriteLine("\nQuantities Have been Reset Successfully" +
-                    "\nTo view the original values select option (4)");
+                DisplayRecipeMessage("Quantities Have been Reset Successfully \nTo view the original values select option (4)");
             }
 
         }
@@ -170,16 +169,16 @@ namespace ST10361554_PROG6221_POE_Part1
                         recipes.Clear();
                     }
 
-                    Console.WriteLine("\nRecipe(s) has been cleared successfully");
+                    DisplayRecipeMessage("Recipe(s) has been cleared successfully");
                 }
                 else
                 {
-                    Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
+                    DisplayRecipeMessage("You have chosen an option that doesn't exist, please try again");
                 }
             }
             else
             {
-                Console.WriteLine("\nThere are no recipes to clear at the moment, \nTry adding one first");
+                DisplayRecipeMessage("There are no recipes to clear at the moment, \nTry adding one first");
             }
         }
 
@@ -211,7 +210,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             else
             {
-                Console.WriteLine("\nThere are no recipes to display at the moment, \nTry adding one first");
+                DisplayRecipeMessage("There are no recipes to display at the moment, \nTry adding one first");
             }
         }
 
@@ -266,6 +265,16 @@ namespace ST10361554_PROG6221_POE_Part1
         public void CloseRecipeApp()
         {
             System.Environment.Exit(0);
+        }
+
+        protected void DisplayRecipeMessage(string message)
+        {
+            int messageLength = message.Length;
+            string displayLine = new string('-', (messageLength + 2));
+
+            Console.WriteLine("\n" + displayLine);
+            Console.WriteLine(message);
+            Console.WriteLine(displayLine + "\n");
         }
 
     }
