@@ -6,65 +6,114 @@ internal class Program
     {
         RecipeMethods methods = new RecipeMethods();
 
+        int userChoice = -1;
+
         Console.WriteLine("Welcome to My Recipe App!" + "\n");
 
         while (true)
         {
-            int userChoice = MenuPrompt();
+            try
+            {
+                userChoice = MenuPrompt();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Oops, an error occurred: " + e.Message);
+            }
 
             switch (userChoice)
             {
                 //create recipe
                 case 1:
                     {
-                        methods.GetRecipeInformation();
+                        try
+                        {
+                            methods.GetRecipeInformation();
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                        }
+
                         break;
                     }
 
                 //Scale Recipe Quantities
                 case 2:
                     {
-                        Recipe recipeToScale = methods.SelectRecipe();
-                        methods.ScaleRecipeQuantities(recipeToScale);
+                        try
+                        {
+                            Recipe recipeToScale = methods.SelectRecipe();
+                            methods.ScaleRecipeQuantities(recipeToScale);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                        }
+
                         break;
                     }
 
                 //Reset Quantities
                 case 3:
                     {
-                        Recipe recipeToReset = methods.SelectRecipe();
-                        methods.RevertScaledQuantities(recipeToReset);
+                        try
+                        {
+                            Recipe recipeToReset = methods.SelectRecipe();
+                            methods.RevertScaledQuantities(recipeToReset);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                        }
+
                         break;
                     }
 
                 //View Recipe
                 case 4:
                     {
-                        if (methods.recipes.Count > 0)
+                        try
                         {
-                            int displayUserChoice = DisplayRecipePrompt();
+                            if (methods.recipes.Count > 0)
+                            {
+                                int displayUserChoice = DisplayRecipePrompt();
 
-                            if (displayUserChoice == 1)
-                            {
-                                Recipe recipeToDisplay = methods.SelectRecipe();
-                                methods.DisplayRecipe(recipeToDisplay);
+                                if (displayUserChoice == 1)
+                                {
+                                    Recipe recipeToDisplay = methods.SelectRecipe();
+                                    methods.DisplayRecipe(recipeToDisplay);
+                                }
+                                else if (displayUserChoice == 2)
+                                {
+                                    methods.DisplayRecipe();
+                                }
                             }
-                            else if (displayUserChoice == 2)
+                            else
                             {
-                                methods.DisplayRecipe();
+                                Console.WriteLine("\nThere are no saved recipes at the moment, \nTry adding one first");
                             }
                         }
-                        else
+                        catch (Exception e)
                         {
-                            Console.WriteLine("\nThere are no saved recipes at the moment, \nTry adding one first");
+                            Console.WriteLine("Oops, an error occurred: " + e.Message);
                         }
+
                         break;
                     }
 
                 //Clear Recipe
                 case 5:
                     {
-                        methods.ClearRecipe();
+                        try
+                        {
+                            methods.ClearRecipe();
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oops, an error occurred: " + e.Message);
+                        }
+
                         break;
                     }
 
@@ -100,11 +149,20 @@ internal class Program
 
     public static int DisplayRecipePrompt()
     {
-        Console.WriteLine("\nPlease choose one of the options below, \nEnter the number of the operation you would like to perform: " +
+        int userChoice = -1;
+
+        try
+        {
+            Console.WriteLine("\nPlease choose one of the options below, \nEnter the number of the operation you would like to perform: " +
             "\n1. Display specific recipe" +
             "\n2. Display all stored recipes");
 
-        int userChoice = Convert.ToInt32(Console.ReadLine());
+            userChoice = Convert.ToInt32(Console.ReadLine());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Oops, an error occurred: " + e.Message);
+        }
 
         return userChoice;
     }

@@ -9,7 +9,6 @@ namespace ST10361554_PROG6221_POE_Part1
 {
     internal class RecipeMethods
     {
-
         public List<Recipe> recipes = new List<Recipe>();
 
         public void GetRecipeInformation()
