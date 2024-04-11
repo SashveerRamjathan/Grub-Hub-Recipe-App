@@ -1,4 +1,5 @@
 ﻿using ST10361554_PROG6221_POE_Part1;
+using System;
 
 internal class Program
 {
@@ -8,7 +9,9 @@ internal class Program
 
         int userChoice = -1;
 
-        Console.WriteLine("Welcome to My Recipe App!" + "\n");
+        Console.WriteLine("----------------------------------------------------------------------------");
+        Console.WriteLine("Welcome to My Recipe App!");
+        Console.WriteLine("----------------------------------------------------------------------------\n");
 
         while (true)
         {
@@ -88,6 +91,10 @@ internal class Program
                                 {
                                     methods.DisplayRecipe();
                                 }
+                                else
+                                {
+                                    Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
+                                }
                             }
                             else
                             {
@@ -125,7 +132,7 @@ internal class Program
                     }
                 default:
                     {
-                        Console.WriteLine("You have chosen an option that doesn't exist, please try again");
+                        Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
                         break;
                     }
             }

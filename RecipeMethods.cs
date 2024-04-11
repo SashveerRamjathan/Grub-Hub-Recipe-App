@@ -94,33 +94,40 @@ namespace ST10361554_PROG6221_POE_Part1
 
                 int userChoice = Convert.ToInt32(Console.ReadLine());
 
-                if (userChoice == 1)
+                if (userChoice >= 1 && userChoice <= 3)
                 {
-                    factorToScale = scaleHalf;
+                    if (userChoice == 1)
+                    {
+                        factorToScale = scaleHalf;
+                    }
+                    else if (userChoice == 2)
+                    {
+                        factorToScale = scaleDouble;
+                    }
+                    else if (userChoice == 3)
+                    {
+                        factorToScale = scaleTriple;
+                    }
+
+                    recipe.FactorToScale = factorToScale;
+
+                    recipe.scaledIngredients.Clear();
+
+                    for (int i = 0; i < recipe.NumberOfIngredients; i++)
+                    {
+                        var ingredient = recipe.Ingredients[i];
+
+                        ingredient.IngredientQuantity *= factorToScale;
+
+                        recipe.scaledIngredients.Add(ingredient);
+                    }
+
+                    DisplayRecipe(recipe.scaledIngredients);
                 }
-                else if (userChoice == 2)
+                else
                 {
-                    factorToScale = scaleDouble;
+                    Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
                 }
-                else if (userChoice == 3)
-                {
-                    factorToScale = scaleTriple;
-                }
-
-                recipe.FactorToScale = factorToScale;
-
-                recipe.scaledIngredients.Clear();
-
-                for (int i = 0; i < recipe.NumberOfIngredients; i++)
-                {
-                    var ingredient = recipe.Ingredients[i];
-
-                    ingredient.IngredientQuantity *= factorToScale;
-
-                    recipe.scaledIngredients.Add(ingredient);
-                }
-
-                DisplayRecipe(recipe.scaledIngredients);
             }
 
         }
@@ -153,14 +160,22 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine("\nAre you sure you want to clear all recipes: "
                 + "\n1. Yes"
                 + "\n2. No");
+
                 int userChoice = Convert.ToInt32(Console.ReadLine());
 
-                if (userChoice == 1)
+                if (userChoice == 1  || userChoice == 2)
                 {
-                    recipes.Clear();
-                }
+                    if (userChoice == 1)
+                    {
+                        recipes.Clear();
+                    }
 
-                Console.WriteLine("\nRecipe(s) has been cleared successfully");
+                    Console.WriteLine("\nRecipe(s) has been cleared successfully");
+                }
+                else
+                {
+                    Console.WriteLine("\nYou have chosen an option that doesn't exist, please try again");
+                }
             }
             else
             {
