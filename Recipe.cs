@@ -9,16 +9,15 @@ namespace ST10361554_PROG6221_POE_Part1
 {
     internal class Recipe
     {
-        public string? RecipeName { get; set; }
-        public int NumberOfIngredients { get; set; }
-        public int NumberOfSteps { get; set; }
-        public double FactorToScale { get; set; }
+        public string? RecipeName { get; set; } // stores the recipe's name
+        public int NumberOfIngredients { get; set; } // stores the number of ingredients in the recipe
+        public int NumberOfSteps { get; set; } // stores the number of steps need to make the recipe
+        public double FactorToScale { get; set; } // stores the factor the ingredient quantity is scaled by
 
-        //change to arrays
-        public RecipeIngredient[]? Ingredients;
+        public RecipeIngredient[]? Ingredients; // array to store all the recipe ingredient objects
 
-        public RecipeStep[]? Steps;
+        public RecipeStep[]? Steps; // array to store all the recipe step objects
 
-        public RecipeIngredient[]? scaledIngredients;
+        public RecipeIngredient[]? scaledIngredients; // array to store all the recipe ingredients, once it has been scaled by the factor chosen
     }
 }
