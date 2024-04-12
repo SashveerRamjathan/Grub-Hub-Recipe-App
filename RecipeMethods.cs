@@ -268,7 +268,7 @@ namespace ST10361554_PROG6221_POE_Part1
             System.Environment.Exit(0);
         }
 
-        protected void DisplaySystemMessageGreen(string message)
+        public void DisplaySystemMessageGreen(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -283,7 +283,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
         }
 
-        protected void DisplaySystemMessageRed(string message)
+        public void DisplaySystemMessageRed(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
@@ -298,5 +298,19 @@ namespace ST10361554_PROG6221_POE_Part1
 
         }
 
+        public void DisplaySystemMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            int messageLength = message.Length;
+            string displayLine = new string('-', (messageLength + 2));
+
+            Console.WriteLine("\n" + displayLine);
+            Console.WriteLine(message);
+            Console.WriteLine(displayLine + "\n");
+
+            Console.ResetColor();
+
+        }
     }
 }
