@@ -14,6 +14,7 @@ namespace ST10361554_PROG6221_POE_Part1
         public int NumberOfSteps { get; set; }
         public double FactorToScale { get; set; }
 
+        //change to arrays
         public List<RecipeIngredient> Ingredients = new List<RecipeIngredient>();
 
         public List<RecipeStep> Steps = new List<RecipeStep>();

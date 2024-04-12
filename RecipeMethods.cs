@@ -28,6 +28,7 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine("\nPlease enter the name of ingredient " + (i+1) + ": ");
                 ingredient.IngredientName = Console.ReadLine();
 
+                //validate that it isn not a number
                 Console.WriteLine("\nPlease enter the unit of measurement for ingredient " + (i+1) + ": ");
                 ingredient.UnitOfMeasurement = Console.ReadLine();
 
@@ -53,7 +54,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
             recipes.Add(recipe);
 
-            DisplayRecipeMessage("Recipe saved successfully");
+            DisplaySystemMessageGreen("Recipe saved successfully");
         }
 
         public Recipe SelectRecipe()
@@ -71,7 +72,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             else
             {
-                DisplayRecipeMessage("There are no saved recipes at the moment, \nTry adding one first");
+                DisplaySystemMessageRed("There are no saved recipes at the moment, \nTry adding one first");
             }
 
             return SelectedRecipe;
@@ -126,7 +127,7 @@ namespace ST10361554_PROG6221_POE_Part1
                 }
                 else
                 {
-                    DisplayRecipeMessage("You have chosen an option that doesn't exist, please try again");
+                    DisplaySystemMessageRed("You have chosen an option that doesn't exist, please try again");
                 }
             }
 
@@ -147,7 +148,7 @@ namespace ST10361554_PROG6221_POE_Part1
                     recipe.scaledIngredients.Add(ingredient);
                 }
 
-                DisplayRecipeMessage("Quantities Have been Reset Successfully \nTo view the original values select option (4)");
+                DisplaySystemMessageGreen("Quantities Have been Reset Successfully \nTo view the original values select option (4)");
             }
 
         }
@@ -156,7 +157,7 @@ namespace ST10361554_PROG6221_POE_Part1
         {
             if (recipes.Count > 0)
             {
-                Console.WriteLine("\nAre you sure you want to clear all recipes: "
+                DisplaySystemMessageRed("\nAre you sure you want to clear all recipes: "
                 + "\n1. Yes"
                 + "\n2. No");
 
@@ -169,16 +170,16 @@ namespace ST10361554_PROG6221_POE_Part1
                         recipes.Clear();
                     }
 
-                    DisplayRecipeMessage("Recipe(s) has been cleared successfully");
+                    DisplaySystemMessageGreen("Recipe(s) has been cleared successfully");
                 }
                 else
                 {
-                    DisplayRecipeMessage("You have chosen an option that doesn't exist, please try again");
+                    DisplaySystemMessageRed("You have chosen an option that doesn't exist, please try again");
                 }
             }
             else
             {
-                DisplayRecipeMessage("There are no recipes to clear at the moment, \nTry adding one first");
+                DisplaySystemMessageRed("There are no recipes to clear at the moment, \nTry adding one first");
             }
         }
 
@@ -210,7 +211,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
             else
             {
-                DisplayRecipeMessage("There are no recipes to display at the moment, \nTry adding one first");
+                DisplaySystemMessageRed("There are no recipes to display at the moment, \nTry adding one first");
             }
         }
 
@@ -267,14 +268,34 @@ namespace ST10361554_PROG6221_POE_Part1
             System.Environment.Exit(0);
         }
 
-        protected void DisplayRecipeMessage(string message)
+        protected void DisplaySystemMessageGreen(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             int messageLength = message.Length;
             string displayLine = new string('-', (messageLength + 2));
 
             Console.WriteLine("\n" + displayLine);
             Console.WriteLine(message);
             Console.WriteLine(displayLine + "\n");
+
+            Console.ResetColor();
+
+        }
+
+        protected void DisplaySystemMessageRed(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            int messageLength = message.Length;
+            string displayLine = new string('-', (messageLength + 2));
+
+            Console.WriteLine("\n" + displayLine);
+            Console.WriteLine(message);
+            Console.WriteLine(displayLine + "\n");
+
+            Console.ResetColor();
+
         }
 
     }
