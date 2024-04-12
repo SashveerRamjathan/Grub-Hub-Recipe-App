@@ -21,6 +21,8 @@ namespace ST10361554_PROG6221_POE_Part1
             Console.WriteLine("\nPlease enter the number of ingredients required to make your recipe: ");
             recipe.NumberOfIngredients = Convert.ToInt32(Console.ReadLine());
 
+            recipe.Ingredients = new RecipeIngredient[recipe.NumberOfIngredients];
+
             for (int i = 0; i < recipe.NumberOfIngredients; i++)
             {
                 RecipeIngredient ingredient = new RecipeIngredient();
@@ -28,19 +30,20 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine("\nPlease enter the name of ingredient " + (i+1) + ": ");
                 ingredient.IngredientName = Console.ReadLine();
 
-                //validate that it isn not a number
                 Console.WriteLine("\nPlease enter the unit of measurement for ingredient " + (i+1) + ": ");
                 ingredient.UnitOfMeasurement = Console.ReadLine();
 
                 Console.WriteLine("\nPlease enter the amount of " + ingredient.IngredientName + " you have to add: ");
                 ingredient.IngredientQuantity = Convert.ToDouble(Console.ReadLine());
 
-                recipe.Ingredients.Add(ingredient);
+                recipe.Ingredients[i] = ingredient;
 
             }
 
             Console.WriteLine("\nPlease enter the number of steps required in your recipe: ");
             recipe.NumberOfSteps = Convert.ToInt32(Console.ReadLine());
+
+            recipe.Steps = new RecipeStep[recipe.NumberOfSteps];
 
             for (int i = 0; i < recipe.NumberOfSteps; i++)
             {
@@ -49,7 +52,7 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine("\nPlease enter a description for step " + (i+1) + ": ");
                 step.StepDescription = Console.ReadLine();
 
-                recipe.Steps.Add(step);
+                recipe.Steps[i] = step;
             }
 
             recipes.Add(recipe);
@@ -89,9 +92,9 @@ namespace ST10361554_PROG6221_POE_Part1
             if (recipes.Count > 0)
             {
                 Console.WriteLine("\nPlease choose a factor by which to scale the recipe quantities: "
-                            + "\n1. Halve"
-                            + "\n2. Double"
-                            + "\n3. Triple");
+                            + "\n1. Halve (0,5)"
+                            + "\n2. Double (2)"
+                            + "\n3. Triple (3)");
 
                 int userChoice = Convert.ToInt32(Console.ReadLine());
 
@@ -112,7 +115,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
                     recipe.FactorToScale = factorToScale;
 
-                    recipe.scaledIngredients.Clear();
+                    recipe.scaledIngredients = new RecipeIngredient[recipe.NumberOfIngredients];
 
                     for (int i = 0; i < recipe.NumberOfIngredients; i++)
                     {
@@ -120,7 +123,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
                         ingredient.IngredientQuantity *= factorToScale;
 
-                        recipe.scaledIngredients.Add(ingredient);
+                        recipe.scaledIngredients[i] = ingredient;
                     }
 
                     DisplayRecipe(recipe.scaledIngredients);
@@ -145,7 +148,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
                     ingredient.IngredientQuantity /= scaleFactor;
 
-                    recipe.scaledIngredients.Add(ingredient);
+                    recipe.scaledIngredients[i] = ingredient;
                 }
 
                 DisplaySystemMessageGreen("Quantities Have been Reset Successfully \nTo view the original values select option (4)");
@@ -157,7 +160,7 @@ namespace ST10361554_PROG6221_POE_Part1
         {
             if (recipes.Count > 0)
             {
-                DisplaySystemMessageRed("\nAre you sure you want to clear all recipes: "
+                DisplaySystemMessageRed("Are you sure you want to clear all recipes: "
                 + "\n1. Yes"
                 + "\n2. No");
 
@@ -202,7 +205,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
                     Console.WriteLine("\n\nRecipe Steps: " + "\n");
 
-                    for (int j = 0; j < recipes[i].Steps.Count; j++)
+                    for (int j = 0; j < recipes[i].Steps.Length; j++)
                     {
                         Console.WriteLine("Step Number: " + (j+1));
                         Console.WriteLine(recipes[i].Steps[j].StepDescription + "\n");
@@ -230,7 +233,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
             Console.WriteLine("\n\nRecipe Steps: " + "\n");
 
-            for (int j = 0; j < recipe.Steps.Count; j++)
+            for (int j = 0; j < recipe.Steps.Length; j++)
             {
                 Console.WriteLine("Step Number: " + (j+1));
                 Console.WriteLine(recipe.Steps[j].StepDescription + "\n");
@@ -238,7 +241,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
         }
 
-        public void DisplayRecipe(List<RecipeIngredient> ingredients)
+        public void DisplayRecipe(RecipeIngredient[] ingredients)
         {
             for (int i = 0; i < recipes.Count; i++)
             {
@@ -255,7 +258,7 @@ namespace ST10361554_PROG6221_POE_Part1
 
                 Console.WriteLine("\n\nRecipe Steps: " + "\n");
 
-                for (int j = 0; j < recipes[i].Steps.Count; j++)
+                for (int j = 0; j < recipes[i].Steps.Length; j++)
                 {
                     Console.WriteLine("Step Number: " + (j+1));
                     Console.WriteLine(recipes[i].Steps[j].StepDescription + "\n");
@@ -300,16 +303,12 @@ namespace ST10361554_PROG6221_POE_Part1
 
         public void DisplaySystemMessage(string message)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-
             int messageLength = message.Length;
             string displayLine = new string('-', (messageLength + 2));
 
             Console.WriteLine("\n" + displayLine);
             Console.WriteLine(message);
             Console.WriteLine(displayLine + "\n");
-
-            Console.ResetColor();
 
         }
     }

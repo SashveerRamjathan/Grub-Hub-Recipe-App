@@ -15,10 +15,10 @@ namespace ST10361554_PROG6221_POE_Part1
         public double FactorToScale { get; set; }
 
         //change to arrays
-        public List<RecipeIngredient> Ingredients = new List<RecipeIngredient>();
+        public RecipeIngredient[]? Ingredients;
 
-        public List<RecipeStep> Steps = new List<RecipeStep>();
+        public RecipeStep[]? Steps;
 
-        public List<RecipeIngredient> scaledIngredients = new List<RecipeIngredient>();
+        public RecipeIngredient[]? scaledIngredients;
     }
 }
