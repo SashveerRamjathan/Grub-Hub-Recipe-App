@@ -36,7 +36,15 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine("\nPlease enter the unit of measurement for ingredient " + (i+1) + ": ");
                 ingredient.UnitOfMeasurement = Console.ReadLine(); // gets and stores ingredient unit of measurement
 
-                ValidateUnitOfMeasurement(ingredient.UnitOfMeasurement); // checks if the ingredient unit of measurement is valid
+                bool isValid = ValidateUnitOfMeasurement(ingredient.UnitOfMeasurement); // checks if the ingredient unit of measurement is valid
+
+                while (isValid == false) // while loop to iterate until a valid input is achieved
+                {
+                    Console.WriteLine("\nPlease enter the unit of measurement for ingredient " + (i+1) + ": ");
+                    ingredient.UnitOfMeasurement = Console.ReadLine(); // gets and stores ingredient unit of measurement
+
+                    isValid = ValidateUnitOfMeasurement(ingredient.UnitOfMeasurement); // checks if the ingredient unit of measurement is valid
+                }
 
                 Console.WriteLine("\nPlease enter the amount of " + ingredient.IngredientName + " you have to add: ");
                 ingredient.IngredientQuantity = Convert.ToDouble(Console.ReadLine()); // gets and stores ingredient quantity
@@ -131,7 +139,9 @@ namespace ST10361554_PROG6221_POE_Part1
                         recipe.scaledIngredients[i] = ingredient; // adds the ingredient object to the scaled ingredients array in the recipe object
                     }
 
-                    DisplayRecipe(recipe.scaledIngredients); // displays the recipe with the scaled ingredient quantities
+                    recipe.IsQuantityReset = false; // sets the value to false
+
+                    DisplaySystemMessageGreen("Quantities Have been Scaled Successfully \nTo view the scaled values select option (4)"); // displays message that the quantities was reverted back to the original values
                 }
                 else
                 {
@@ -149,18 +159,29 @@ namespace ST10361554_PROG6221_POE_Part1
         {
             if (recipes.Count > 0) // if statement to check if there are any recipes in the list, if true
             {
-                double scaleFactor = recipe.FactorToScale; // gets and stores the factor that the ingredient quantities was scaled by
-
-                for (int i = 0; i < recipe.NumberOfIngredients; i++) // for-loop to revert the scale of each ingredient by the specified factor
+                if (recipe.IsQuantityReset == false)
                 {
-                    var ingredient = recipe.scaledIngredients[i]; // stores the ingredient object in a variable
+                    double scaleFactor = recipe.FactorToScale; // gets and stores the factor that the ingredient quantities was scaled by
 
-                    ingredient.IngredientQuantity /= scaleFactor; // gets, divides the quantity by the factor and stores it in the corresponding property in the ingredient object 
+                    recipe.IsQuantityReset = true; // sets the value to true
 
-                    recipe.scaledIngredients[i] = ingredient; // adds the ingredient object to the scaled ingredients array in the recipe object
+                    for (int i = 0; i < recipe.NumberOfIngredients; i++) // for-loop to revert the scale of each ingredient by the specified factor
+                    {
+                        var ingredient = recipe.scaledIngredients[i]; // stores the ingredient object in a variable
+
+                        ingredient.IngredientQuantity /= scaleFactor; // gets, divides the quantity by the factor and stores it in the corresponding property in the ingredient object 
+
+                        recipe.scaledIngredients[i] = ingredient; // adds the ingredient object to the scaled ingredients array in the recipe object
+
+                    }
+
+                    DisplaySystemMessageGreen("Quantities Have been Reset Successfully \nTo view the original values select option (4)"); // displays message that the quantities was reverted back to the original values
+                }
+                else
+                {
+                    DisplaySystemMessageRed("Quantities Have been Reset Already \nTo view the recipe select option (4)"); // displays message that the quantities was reverted back to the original values already
                 }
 
-                DisplaySystemMessageGreen("Quantities Have been Reset Successfully \nTo view the original values select option (4)"); // displays message that the quantities was reverted back to the original values
             }
             else
             {
@@ -184,9 +205,9 @@ namespace ST10361554_PROG6221_POE_Part1
                     if (userChoice == 1) // if statement to check if user confirmed delete
                     {
                         recipes.Clear(); // clears the recipes list collection
+                        DisplaySystemMessageGreen("Recipe(s) has been cleared successfully"); // message to display that the list was cleared
                     }
 
-                    DisplaySystemMessageGreen("Recipe(s) has been cleared successfully"); // message to display that the list was cleared
                 }
                 else
                 {
@@ -199,7 +220,7 @@ namespace ST10361554_PROG6221_POE_Part1
             }
         }
 
-        public void ValidateUnitOfMeasurement(string measurement) // method to validate the unit of measurement for an ingredient is valid, measurement is a parameter
+        public bool ValidateUnitOfMeasurement(string measurement) // method to validate the unit of measurement for an ingredient is valid, measurement is a parameter
         {
             // Code Attribution
             // Regular Expression written using code from: 
@@ -213,10 +234,15 @@ namespace ST10361554_PROG6221_POE_Part1
             // "+" ensures that there is at least one non-digit character.
             // "$" asserts the end of the string.
 
-            if (Regex.IsMatch(measurement, "^[^0-9]+$\r\n")) // if statement if to check if iit matches the regular expression
+            bool isValid = true; // stores if the measurement value is valid
+
+            if (Regex.IsMatch(measurement, "^-?\\d*\\.?\\d+$")) // if statement if to check if iit matches the regular expression
             {
-                DisplaySystemMessageRed("This unit of measurement id invalid, \nEnter a valid one"); //message displayed if the measurement matches the regular description
+                isValid = false; // changes the boolean value to false
+                DisplaySystemMessageRed("This unit of measurement is invalid, \nEnter a valid one"); //message displayed if the measurement matches the regular description
             }
+
+            return isValid; // returns the boolean value
         }
 
         public void DisplayRecipe() // "DisplayRecipe" overloaded method that takes no parameters, formats and displays a recipe
@@ -272,31 +298,6 @@ namespace ST10361554_PROG6221_POE_Part1
                 Console.WriteLine(recipe.Steps[j].StepDescription + "\n");
             }
 
-        }
-
-        public void DisplayRecipe(RecipeIngredient[] ingredients) // "DisplayRecipe" overloaded method that takes a ingredients array, formats and displays a recipe
-        {
-            for (int i = 0; i < recipes.Count; i++)
-            {
-                Console.WriteLine("\n----------------------------------------------------------------------------");
-                Console.WriteLine("Recipe Number: " + (i+1));
-                Console.WriteLine("----------------------------------------------------------------------------");
-                Console.WriteLine("Recipe Name: " + recipes[i].RecipeName);
-                Console.WriteLine("\n\nRecipe Ingredients: " + "\n");
-
-                foreach (RecipeIngredient item in ingredients) // for each loop to display the ingredient information for all the ingredients stored in the ingredient array passed in as a parameter
-                {
-                    Console.WriteLine("-> " + item.IngredientQuantity + " " + item.UnitOfMeasurement + " of " + item.IngredientName);
-                }
-
-                Console.WriteLine("\n\nRecipe Steps: " + "\n");
-
-                for (int j = 0; j < recipes[i].Steps.Length; j++) // for loop to display the recipe step information for all the steps stored in the steps array in the recipe object
-                {
-                    Console.WriteLine("Step Number: " + (j+1));
-                    Console.WriteLine(recipes[i].Steps[j].StepDescription + "\n");
-                }
-            }
         }
 
         public void CloseRecipeApp() // method to stop the app

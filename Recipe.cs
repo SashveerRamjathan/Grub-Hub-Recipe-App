@@ -13,6 +13,7 @@ namespace ST10361554_PROG6221_POE_Part1
         public int NumberOfIngredients { get; set; } // stores the number of ingredients in the recipe
         public int NumberOfSteps { get; set; } // stores the number of steps need to make the recipe
         public double FactorToScale { get; set; } // stores the factor the ingredient quantity is scaled by
+        public bool IsQuantityReset { get; set; } // stores if the quantity was reset already
 
         public RecipeIngredient[]? Ingredients; // array to store all the recipe ingredient objects
 
