@@ -5,8 +5,8 @@
 # Prerequisites:
 
 Before you begin, ensure you have the following installed on your system:
-.Net 8 SDK or higher
-Microsoft Visual Studio 2022 or higher
+1. .Net 8 SDK or higher
+2. Microsoft Visual Studio 2022 or higher
 
 # Steps to Clone GitHub Repo:
 
