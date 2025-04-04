@@ -1,32 +1,105 @@
-# ST10361554-PROG6221-POE-Part1
+# Grub Hub – Recipe Management App 🍽️  
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue)](https://dotnet.microsoft.com/en-us/download)
+[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey)]()
 
-# How To Compile and Run Software:
+> A desktop recipe management application developed in C# using Windows Forms in my second year of study.
 
-# Prerequisites:
+---
 
-Before you begin, ensure you have the following installed on your system:
-1. .Net 8 SDK or higher
-2. Microsoft Visual Studio 2022 or higher
+## 📱 Overview
 
-# Steps to Clone GitHub Repo:
+Grub Hub is a user-friendly desktop application that allows users to:
 
-1. Open Visual Studio
-2. Under "Get Started" on the right click clone repository.
-3. In the repository location bar, paste the link you used to open the repository on your browser (https://github.com/SashveerRamjathan/ST10361554-PROG6221-POE.git).
-4. In the path bar add the file path to the location you want to save the code to.
-5. Click clone in the bottom right corner of the same window.
+- Create, view, scale, and delete recipes
+- Group recipes into custom menus
+- Visually analyze food groups using pie charts
+- View nutritional information
+- Understand food group classifications
 
-# Steps to Compile and Run Software:
+This app was developed for my **PROG6221 Programming module** and demonstrates fundamental object-oriented programming, GUI design, input validation, and modular application structure in C# using WinForms.
 
-1. Clone the repository following the steps above. 
-2. Click the hollow green play button on the navigation bar on the top of your screen or click "Ctrl + F5". 
-3. The command window should display after the project builds and you should be able to interact with it
-   following the prompts that appear on screen.
+---
 
-# Link to GitHub repository:
+## 🧑‍💻 Tech Stack
 
-https://github.com/SashveerRamjathan/ST10361554-PROG6221-POE.git
+- **Language**: C#
+- **Framework**: .NET 8
+- **IDE**: Visual Studio 2022
+- **Platform**: Windows Forms
 
-# Link to Video on OneDrive:
+---
 
-https://advtechonline-my.sharepoint.com/:v:/g/personal/st10361554_vcconnect_edu_za/EbEUEmYJ5slIun1zujVvKSkBnUd4_mQBIx6E2z2HCvJsNA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=omY3bf
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+
+### 🛠️ Installation
+
+1. Open **Visual Studio 2022**
+2. Click on **"Clone a repository"**
+3. Paste the following link:  
+   `https://github.com/SashveerRamjathan/Grub-Hub-Recipe-App.git`
+4. Choose a local folder and click **"Clone"**
+5. Once loaded, click **"Start" (or press Ctrl + F5)** to run the application
+
+---
+
+## 📘 User Guide
+
+### Main Menu Options
+
+| Option              | Description |
+|---------------------|-------------|
+| **Create Recipe**   | Add ingredients, steps, and details to save a recipe |
+| **View Recipe Book**| View, scale, or reset saved recipes |
+| **Create Menu**     | Combine multiple recipes and analyze nutritional balance via pie chart |
+| **View Food Groups**| Learn about the 7 basic food groups |
+| **Delete Recipes**  | Delete a single or all recipes |
+| **Close App**       | Exit the application with confirmation |
+
+### 📝 Features
+
+#### ✅ Creating a Recipe
+- Add ingredients (validated input: name, quantity, units, calories)
+- Add preparation steps
+- Get calorie alerts when recipes exceed 300 calories
+- Save and confirm recipe creation
+
+#### 🍴 Viewing & Scaling Recipes
+- View detailed breakdowns of recipes
+- Use dropdown to select recipes
+- Scale ingredients by 0.5x, 2x, 3x, etc.
+- Reset scaled recipes back to original
+
+#### 🧠 Menu & Food Group Analysis
+- Select multiple recipes to form a menu
+- View a pie chart breakdown of food groups
+- Educational descriptions of food groups included
+
+#### 🗑️ Deleting Recipes
+- Delete individual or all recipes with confirmation
+
+---
+
+## 📊 Project Insights
+
+- Over 100+ commits made throughout the development process
+- Object-Oriented Programming principles applied
+- Strong input validation and user feedback implementation
+- GUI development in WinForms with event-driven design
+
+---
+
+## 🧠 What I Learned
+
+- Implementing a multi-form WinForms application
+- Structuring C# projects using classes and interfaces
+- Handling user inputs, validation, and state management
+- Visualizing data through charts
+- Version control using Git and GitHub
+
+---
+
